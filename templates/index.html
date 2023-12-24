@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block main %}
+    <div class="container pt-5">
+      <div class="pt-5"></div>
+      <h1 class="pt-5 display-1 fw-bold text-yellow text-center">
+        AR
+      </h1>
+      <p class="text-center fw-bold text-white fs-5">Search for your favorite anime or manga here:</p>
+      <form action="search" method="get"> 
+      <div class="rounded-pill w-75 m-auto input-group mb-3" style="height: 50px;">
+        <input type="text" name="name" class="rounded-start-pill form-control" placeholder="Enter title..." aria-label="Username" aria-describedby="basic-addon1">
+        <span class="input-group-text rounded-end-pill bg-yellow" id="basic-addon1">@</span>
+      </div>
+        </form>
+
+      <div class="socials">
+        <h4 class="text-white text-center">Socials are here.</h4>
+      </div>
+{% endblock %}
