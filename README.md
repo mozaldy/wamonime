@@ -1,3 +1,5 @@
+![image](https://github.com/mozaldy/wamonime/assets/96912274/fb759ef6-6470-4b70-aa35-1a2a725d681d)
+
 ## Introduction
 The notebook follows a boy whose stumbled upon this amazing dataset unintentionally. With the ability of machine learning, he explores the dataset in search of 'what to watch next?' using content based and collaborative filtering.
 ## Problem statement
