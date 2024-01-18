@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SearchView from '../views/SearchView.vue'
+import IndexView from '../views/IndexView.vue'
 
 const loadView = (view) => () => import(`../views/${view}.vue`)
 
 const routes = [
   {
     path: '/',
-    name: 'search',
-    component: SearchView
+    name: 'index',
+    component: IndexView
   },
   {
     path: '/home',
@@ -28,6 +28,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: loadView('AboutView')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: loadView('SearchView')
   }
 ]
 
