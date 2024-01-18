@@ -26,7 +26,6 @@ Welcome to the Anime Recommendation System! This is a full-stack web application
    - [Front-end (Vue.js - Client)](#front-end-vuejs---client)
    - [Back-end (Flask - Server)](#back-end-flask---server)
    - [Consuming the REST API](#consuming-the-rest-api)
-     ![image](https://github.com/mozaldy/wamonime/assets/96912274/fb759ef6-6470-4b70-aa35-1a2a725d681d)
 
 ## Introduction
 
