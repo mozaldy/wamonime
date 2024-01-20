@@ -10,9 +10,9 @@ import Footer from './components/Footer.vue'
     <v-main>
       <v-container>
         <router-view v-slot="{ Component }">
-          <v-expand-transition mode="out-in">
+          <v-fab-transition mode="out-in">
             <component :is="Component" />
-          </v-expand-transition>
+          </v-fab-transition>
         </router-view>
       </v-container>
     </v-main>

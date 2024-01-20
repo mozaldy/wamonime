@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="blue-darken-4">
+  <v-app-bar elevation="2" scroll-behavior="hide" scroll-threshold="100" color="blue-darken-4">
     <v-container class="d-flex align-center">
       <router-link to="/">
         <v-avatar class="me-4" color="white" size="32"></v-avatar>

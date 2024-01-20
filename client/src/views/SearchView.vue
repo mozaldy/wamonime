@@ -5,8 +5,16 @@
         Search result for "<span class="font-weight-bold">{{ query }}</span
         >"
       </p>
-      <p v-if="isLoading" class="text-h4">LOADING</p>
-      <v-row>
+      <v-col cols="12 d-flex justify-center" v-if="isLoading">
+        <v-progress-circular
+          width="10"
+          size="250"
+          indeterminate
+          color="primary"
+          class="text-center"
+        />
+      </v-col>
+      <v-row v-else>
         <v-col class="justify-center" cols="12" sm="6" md="4" v-for="item in items">
           <ItemCard
             :title="item.title"
