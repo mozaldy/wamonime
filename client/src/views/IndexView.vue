@@ -19,7 +19,8 @@
           rounded="xl"
           single-line
           clearable
-          @click:append="handleItemClick"
+          @keyup.enter="handleSearch"
+          @click:append-inner="handleSearch"
         />
       </v-col>
       <v-col cols="12" class="justify-center d-flex">
@@ -40,11 +41,11 @@
 import socials from '../data/socials.js'
 import { ref, watch } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 const query = ref(null)
 const result = ref([])
-
-let timeout
+const router = useRouter()
 
 const fetchquery = async (q) => {
   try {
@@ -57,12 +58,15 @@ const fetchquery = async (q) => {
     })
 
     result.value = response.data.data.map((entry) => ({
-      title: entry.title_english
+      title: entry.title_english,
+      id: entry.mal_id
     }))
   } catch (error) {
     console.log('error fetching data!')
   }
 }
+
+let timeout
 
 watch(query, (value) => {
   clearTimeout(timeout)
@@ -71,9 +75,13 @@ watch(query, (value) => {
   }, 500)
 })
 
-const handleItemClick = (item) => {
-  // Perform the desired action when an item is clicked
-  console.log('Item clicked:', item)
-  // You can redirect to a detail page, show more information, etc.
+const handleSearch = () => {
+  if (query.value) {
+    if (typeof query.value === 'string') {
+      router.push({ name: 'search', params: { q: query.value } })
+    } else {
+      router.push({ name: 'anime_view', params: { id: query.value.id } })
+    }
+  }
 }
 </script>

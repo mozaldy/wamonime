@@ -3,7 +3,7 @@ import IndexView from '../views/IndexView.vue'
 
 const loadView = (view) => () => import(`../views/${view}.vue`)
 
-const routes = [
+let routes = [
   {
     path: '/',
     name: 'index',
@@ -15,9 +15,21 @@ const routes = [
     component: loadView('HomeView')
   },
   {
+    path: '/search/:q',
+    name: 'search',
+    component: loadView('SearchView')
+  },
+  {
     path: '/anime',
     name: 'anime',
-    component: loadView('AnimeView')
+    component: loadView('AnimeView'),
+    props: true
+  },
+  {
+    path: '/anime/:id',
+    name: 'anime_view',
+    component: loadView('AnimeView'),
+    props: true
   },
   {
     path: '/manga',
@@ -28,11 +40,6 @@ const routes = [
     path: '/about',
     name: 'about',
     component: loadView('AboutView')
-  },
-  {
-    path: '/search',
-    name: 'search',
-    component: loadView('SearchView')
   }
 ]
 
@@ -40,6 +47,13 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
+
+routes = [
+  { name: 'home', path: '/home' },
+  { name: 'anime', path: '/anime' },
+  { name: 'manga', path: '/manga' },
+  { name: 'about', path: '/about' }
+]
 
 export default router
 export { routes }
