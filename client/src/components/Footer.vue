@@ -1,5 +1,5 @@
 <template>
-  <v-footer color="blue-darken-4" height="200">
+  <v-footer color="blue-darken-4" height="300">
     <v-row justify="center">
       <v-btn
         v-for="route in routes"

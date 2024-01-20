@@ -35,7 +35,7 @@
   </v-card>
 </template>
 <script setup>
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 const show = ref(false)
 const props = defineProps([
   'title',

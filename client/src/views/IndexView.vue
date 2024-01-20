@@ -80,7 +80,7 @@ const handleSearch = () => {
     if (typeof query.value === 'string') {
       router.push({ name: 'search', params: { q: query.value } })
     } else {
-      router.push({ name: 'anime_view', params: { id: query.value.id } })
+      router.push({ name: 'anime_item', params: { id: query.value.id } })
     }
   }
 }

@@ -1,3 +1,3 @@
 <template>
-  <h1>Manga</h1>
+  <h1>This is an Manga page!</h1>
 </template>

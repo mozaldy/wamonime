@@ -27,8 +27,8 @@ let routes = [
   },
   {
     path: '/anime/:id',
-    name: 'anime_view',
-    component: loadView('AnimeView'),
+    name: 'anime_item',
+    component: loadView('ItemView'),
     props: true
   },
   {
@@ -49,6 +49,7 @@ const router = createRouter({
 })
 
 routes = [
+  { name: 'search', path: '/' },
   { name: 'home', path: '/home' },
   { name: 'anime', path: '/anime' },
   { name: 'manga', path: '/manga' },
