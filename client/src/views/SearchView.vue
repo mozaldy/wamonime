@@ -5,15 +5,7 @@
         Search result for "<span class="font-weight-bold">{{ query }}</span
         >"
       </p>
-      <v-col cols="12 d-flex justify-center" v-if="isLoading">
-        <v-progress-circular
-          width="10"
-          size="250"
-          indeterminate
-          color="primary"
-          class="text-center"
-        />
-      </v-col>
+      <Loading v-if="isLoading" />
       <v-row v-else>
         <ListItem :items />
       </v-row>
@@ -26,6 +18,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 
+import Loading from '@/components/Loading.vue'
 import ListItem from '@/components/ListItem.vue'
 
 const route = useRoute()

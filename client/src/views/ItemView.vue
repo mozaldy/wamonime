@@ -1,59 +1,45 @@
 <template>
   <v-container>
-    <v-col cols="12 d-flex justify-center" v-if="isLoading">
-      <v-progress-circular
-        width="10"
-        size="250"
-        indeterminate
-        color="primary"
-        class="text-center"
-      />
-    </v-col>
+    <Loading v-if="isLoading" />
     <v-row class="align-center" v-else>
-      <v-col cols="4">
-        <v-img
-          :src="animeData.images.jpg.large_image_url"
-          draggable="false"
-          alt="Anime Cover"
-        ></v-img
+      <v-col cols="8" md="4" class="mx-auto">
+        <v-img :src="data.images.jpg.large_image_url" draggable="false" alt="Anime Cover"></v-img
       ></v-col>
-      <v-col cols="8">
+      <v-col cols="12" md="8">
         <v-card>
-          <v-card-title>{{ animeData.title }}</v-card-title>
-          <v-card-subtitle>{{ animeData.title_japanese }}</v-card-subtitle>
+          <v-card-title>{{ data.title }}</v-card-title>
+          <v-card-subtitle>{{ data.title_japanese }}</v-card-subtitle>
           <v-card-text>
-            <p><strong>Synopsis:</strong> {{ animeData.synopsis }}</p>
-            <p><strong>Type:</strong> {{ animeData.type }}</p>
-            <p><strong>Source:</strong> {{ animeData.source }}</p>
-            <p><strong>Episodes:</strong> {{ animeData.episodes }}</p>
-            <p><strong>Status:</strong> {{ animeData.status }}</p>
-            <p><strong>Aired:</strong> {{ animeData.aired.string }}</p>
-            <p><strong>Duration:</strong> {{ animeData.duration }}</p>
-            <p><strong>Rating:</strong> {{ animeData.rating }}</p>
-            <p><strong>Score:</strong> {{ animeData.score }}</p>
-            <p><strong>Rank:</strong> {{ animeData.rank }}</p>
-            <p><strong>Popularity:</strong> {{ animeData.popularity }}</p>
-            <p><strong>Members:</strong> {{ animeData.members }}</p>
-            <p><strong>Favorites:</strong> {{ animeData.favorites }}</p>
+            <p><strong>Synopsis:</strong> {{ data.synopsis }}</p>
+            <p><strong>Type:</strong> {{ data.type }}</p>
+            <p><strong>Source:</strong> {{ data.source }}</p>
+            <p><strong>Episodes:</strong> {{ data.episodes }}</p>
+            <p><strong>Status:</strong> {{ data.status }}</p>
+            <p v-if="data.aired"><strong>Aired:</strong> {{ data.aired.string }}</p>
+            <p><strong>Duration:</strong> {{ data.duration }}</p>
+            <p><strong>Rating:</strong> {{ data.rating }}</p>
+            <p><strong>Score:</strong> {{ data.score }}</p>
+            <p><strong>Rank:</strong> {{ data.rank }}</p>
+            <p><strong>Popularity:</strong> {{ data.popularity }}</p>
+            <p><strong>Members:</strong> {{ data.members }}</p>
+            <p><strong>Favorites:</strong> {{ data.favorites }}</p>
             <p>
               <strong class="me-3">Genres:</strong>
-              <v-chip v-for="genre in animeData.genres" :key="genre.mal_id" class="mr-2">
+              <v-chip v-for="genre in data.genres" :key="genre.mal_id" class="mr-2">
                 {{ genre.name }}
               </v-chip>
             </p>
           </v-card-text>
           <v-card-actions>
-            <v-btn text v-if="animeData.trailer">
+            <v-btn text v-if="data.trailer">
               <v-icon left>mdi-play-circle</v-icon>
-              <a :href="animeData.trailer.url" target="_blank" rel="noopener noreferrer"
+              <a :href="data.trailer.url" target="_blank" rel="noopener noreferrer"
                 >Watch Trailer</a
               >
             </v-btn>
-            <v-btn text v-if="animeData.url">
+            <v-btn text v-if="data.url">
               <v-icon left>mdi-link</v-icon>
-              <a :href="animeData.url" target="_blank" rel="noopener noreferrer"
-                >View on MyAnimeList</a
-              >
+              <a :href="data.url" target="_blank" rel="noopener noreferrer">View on MyAnimeList</a>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -65,16 +51,19 @@
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 import axios from 'axios'
+import Loading from '@/components/Loading.vue'
 
 const route = useRoute()
 const query = ref(route.params.id)
-const animeData = ref()
+const data = ref()
 const isLoading = ref(true)
+
+const content_type = route.meta.content
 
 const fetchAnime = async (id) => {
   try {
-    const response = await axios.get(`https://api.jikan.moe/v4/anime/${id}`)
-    animeData.value = response.data.data
+    const response = await axios.get(`https://api.jikan.moe/v4/${content_type}/${id}`)
+    data.value = response.data.data
     isLoading.value = false
   } catch (error) {
     console.log(error)

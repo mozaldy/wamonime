@@ -22,14 +22,23 @@ let routes = [
   {
     path: '/anime',
     name: 'anime',
-    component: loadView('AnimeView'),
-    props: true
+    component: loadView('AnimeView')
   },
   {
     path: '/anime/:id',
     name: 'anime_item',
     component: loadView('ItemView'),
-    props: true
+    meta: {
+      content: 'anime'
+    }
+  },
+  {
+    path: '/manga/:id',
+    name: 'manga_item',
+    component: loadView('ItemView'),
+    meta: {
+      content: 'manga'
+    }
   },
   {
     path: '/manga',

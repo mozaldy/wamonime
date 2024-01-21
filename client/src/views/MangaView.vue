@@ -1,15 +1,7 @@
 <template>
   <v-container>
     <p class="text-h4">Top publishing manga</p>
-    <v-col cols="12 d-flex justify-center" v-if="isLoading">
-      <v-progress-circular
-        width="10"
-        size="250"
-        indeterminate
-        color="primary"
-        class="text-center"
-      />
-    </v-col>
+    <Loading v-if="isLoading" />
     <v-row v-else>
       <ListItem :items />
     </v-row>
@@ -20,6 +12,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 import ListItem from '@/components/ListItem.vue'
+import Loading from '@/components/Loading.vue'
 
 const items = ref(null)
 const isLoading = ref(true)

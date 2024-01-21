@@ -51,7 +51,7 @@ const fetchquery = async (q) => {
     })
 
     result.value = response.data.data.map((entry) => ({
-      title: entry.title_english,
+      title: entry.title,
       id: entry.mal_id
     }))
   } catch (error) {
