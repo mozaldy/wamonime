@@ -1,12 +1,12 @@
 <template>
   <v-card class="my-5 mx-auto" max-width="344">
-    <router-link :to="`/anime/${id}`">
+    <router-link :to="`/${content}/${id}`">
       <v-img :src="img_src" height="300px" cover draggable="false" />
     </router-link>
 
     <router-link
       class="text-decoration-none font-weight-bold text-blue-darken-4"
-      :to="`/anime/${id}`"
+      :to="`/${content}/${id}`"
     >
       <v-card-title v-if="title !== ''"> {{ title || '-' }}</v-card-title>
     </router-link>
@@ -45,6 +45,7 @@ const props = defineProps([
   'members',
   'img_src',
   'synopsis',
-  'id'
+  'id',
+  'content'
 ])
 </script>

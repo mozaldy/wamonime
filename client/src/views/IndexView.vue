@@ -21,24 +21,17 @@
           clearable
           @keyup.enter="handleSearch"
           @click:append-inner="handleSearch"
+          @click:item="handleChange"
+          @update:modelValue="handleChange"
         />
       </v-col>
-      <v-col cols="12" class="justify-center d-flex">
-        <v-btn
-          v-for="icon in socials"
-          :key="icon.icon"
-          class="mx-4"
-          :icon="icon.icon"
-          :href="icon.link"
-          variant="text"
-        />
-      </v-col>
+      <Socials />
     </v-container>
   </main>
 </template>
 
 <script setup>
-import socials from '../data/socials.js'
+import Socials from '@/components/Socials.vue'
 import { ref, watch } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
@@ -71,9 +64,15 @@ let timeout
 watch(query, (value) => {
   clearTimeout(timeout)
   timeout = setTimeout(() => {
-    fetchquery(value)
-  }, 500)
+    if (value !== null) fetchquery(value.title || value)
+  }, 200)
 })
+
+const handleChange = () => {
+  if (query.value && typeof query.value === 'object' && query.value.id) {
+    router.push({ name: 'anime_item', params: { id: query.value.id } })
+  }
+}
 
 const handleSearch = () => {
   if (query.value) {

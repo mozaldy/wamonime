@@ -11,7 +11,11 @@
     </v-col>
     <v-row class="align-center" v-else>
       <v-col cols="4">
-        <v-img :src="animeData.images.jpg.large_image_url" alt="Anime Cover"></v-img
+        <v-img
+          :src="animeData.images.jpg.large_image_url"
+          draggable="false"
+          alt="Anime Cover"
+        ></v-img
       ></v-col>
       <v-col cols="8">
         <v-card>
@@ -32,7 +36,7 @@
             <p><strong>Members:</strong> {{ animeData.members }}</p>
             <p><strong>Favorites:</strong> {{ animeData.favorites }}</p>
             <p>
-              <strong>Genres:</strong>
+              <strong class="me-3">Genres:</strong>
               <v-chip v-for="genre in animeData.genres" :key="genre.mal_id" class="mr-2">
                 {{ genre.name }}
               </v-chip>

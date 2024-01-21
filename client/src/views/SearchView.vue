@@ -15,18 +15,7 @@
         />
       </v-col>
       <v-row v-else>
-        <v-col class="justify-center" cols="12" sm="6" md="4" v-for="item in items">
-          <ItemCard
-            :title="item.title"
-            :episode="item.episode"
-            :score="item.score"
-            :members="item.members"
-            :media_type="item.media_type"
-            :synopsis="item.synopsis"
-            :img_src="item.img_src"
-            :id="item.id"
-          />
-        </v-col>
+        <ListItem :items />
       </v-row>
     </v-container>
   </v-app>
@@ -37,7 +26,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 
-import ItemCard from '../components/ItemCard.vue'
+import ListItem from '@/components/ListItem.vue'
 
 const route = useRoute()
 const query = ref(route.params.q)
@@ -60,7 +49,8 @@ const fetchData = async (q) => {
       score: entry.score,
       members: entry.members,
       synopsis: entry.synopsis,
-      img_src: entry.images.webp.large_image_url
+      img_src: entry.images.webp.large_image_url,
+      content: 'anime'
     }))
     isLoading.value = false
   } catch (error) {
