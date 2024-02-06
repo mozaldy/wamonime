@@ -1,8 +1,8 @@
 <template>
-  <v-footer color="blue-darken-4" height="300">
+  <v-footer class="mt-16" color="blue-darken-4" height="300">
     <v-row justify="center">
       <v-btn
-        v-for="route in routes"
+        v-for="route in nav_routes"
         :key="route.name"
         :text="route.name"
         :to="route.path"
@@ -20,6 +20,6 @@
 </template>
 
 <script setup>
-import { routes } from '../router'
+import { nav_routes } from '../router'
 import Socials from './Socials.vue'
 </script>

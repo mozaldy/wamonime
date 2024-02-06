@@ -1,6 +1,16 @@
 <template>
   <v-container>
-    <p class="text-h4">Top publishing manga</p>
+    <v-select
+      v-model="selected_category"
+      :items="categories"
+      item-title="title"
+      label="Select"
+      persistent-hint
+      return-object
+      single-line
+      @update:model-value="handleCategory"
+    />
+    <p class="text-h4">{{ selected_category.desc }}</p>
     <Loading v-if="isLoading" />
     <v-row v-else>
       <ListItem :items />
@@ -16,10 +26,19 @@ import Loading from '@/components/Loading.vue'
 
 const items = ref(null)
 const isLoading = ref(true)
+const categories = ref([
+  { id: 'publishing', title: 'Top Publishing', desc: 'The top publishing manga this season.' },
+  { id: 'bypopularity', title: 'Most Popular', desc: 'The most popular manga of all time.' },
+  { id: 'favorite', title: 'Most Favorites', desc: 'The most favorited manga of all time.' }
+])
+const selected_category = ref(categories.value[0])
 
-const fetchAnimes = async () => {
+const fetchmangas = async () => {
   try {
-    const response = await axios.get('https://api.jikan.moe/v4/top/manga?filter=publishing')
+    console.log(selected_category.value.id)
+    const response = await axios.get(
+      `https://api.jikan.moe/v4/top/manga?filter=${selected_category.value.id}`
+    )
     items.value = response.data.data.map((entry) => ({
       id: entry.mal_id,
       title: entry.title,
@@ -36,6 +55,10 @@ const fetchAnimes = async () => {
     console.log(error)
   }
 }
+const handleCategory = () => {
+  isLoading.value = true
+  fetchmangas()
+}
 
-fetchAnimes()
+fetchmangas()
 </script>

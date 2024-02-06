@@ -1,5 +1,7 @@
+<!-- eslint-disable no-unused-vars -->
+<!-- eslint-disable vue/valid-v-for -->
 <template>
-  <v-col class="justify-center" cols="12" sm="6" md="4" v-for="item in items">
+  <v-col class="justify-center" cols="12" sm="4" md="3" v-for="item in items">
     <ItemCard
       :title="item.title"
       :episode="item.episode"

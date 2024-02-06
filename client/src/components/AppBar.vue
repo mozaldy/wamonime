@@ -4,7 +4,12 @@
       <p class="text-h4 my-5">Wamonime</p>
     </v-list-item>
     <v-divider></v-divider>
-    <v-list-item v-for="route in routes" :to="route.path" link :title="route.name"></v-list-item>
+    <v-list-item
+      v-for="route in nav_routes"
+      :to="route.path"
+      link
+      :title="route.name"
+    ></v-list-item>
   </v-navigation-drawer>
 
   <v-app-bar scroll-behavior="elevate" color="blue-darken-4">
@@ -13,14 +18,19 @@
         <v-avatar class="me-4" color="white" size="32"></v-avatar>
       </router-link>
       <v-app-bar-title text="Wamonime" />
-      <v-btn v-for="route in routes" :to="route.path" :text="route.name" class="d-none d-sm-flex" />
+      <v-btn
+        v-for="route in nav_routes"
+        :to="route.path"
+        :text="route.name"
+        class="d-none d-sm-flex"
+      />
       <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="d-sm-none" />
     </v-container>
   </v-app-bar>
 </template>
 
 <script setup>
-import { routes } from '../router'
+import { nav_routes } from '../router'
 import { ref } from 'vue'
 
 const drawer = ref(null)
